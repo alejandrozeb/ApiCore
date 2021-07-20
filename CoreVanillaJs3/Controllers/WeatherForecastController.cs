@@ -24,7 +24,7 @@ namespace CoreVanillaJs3.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<WeatherForecast> Geta()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -35,5 +35,17 @@ namespace CoreVanillaJs3.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet]
+        public ActionResult Get() {
+            using (Models.CrudVanillaJsContext db= new Models.CrudVanillaJsContext()) 
+            {
+                var lst = (from d in db.Personas
+                          select d).ToList();
+                return Ok(lst);
+            }
+
+            //return new string[] { "value1", "value 2" };
+        } 
     }
 }

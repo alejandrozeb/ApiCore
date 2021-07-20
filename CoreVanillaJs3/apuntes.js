@@ -10,5 +10,10 @@
 
     Scaffold-DBContext "Server=Localhost;Database=CrudVanillaJs;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 
-cadena para mappear la bd, tambien podemos usar User= Password= para usar sqlAutentication
+cadena para mappear la bd, tambien podemos usar User= Password= para usar sqlAutentication}
+ 
+ Models.CrudVanillaJsContext db= new Models.CrudVanillaJsContext()
+ hace la conexion a bd
+
+
  */
