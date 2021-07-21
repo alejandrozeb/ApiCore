@@ -26,6 +26,18 @@ namespace CoreVanillaJs3.Controllers
         public ActionResult Post([FromBody] Models.Request.PersonaRequest model) 
         {
 
+            //conexion a la bd
+
+            using (Models.CrudVanillaJsContext db = new Models.CrudVanillaJsContext())
+            {
+                //creando un objeto
+                Models.Persona oPersona = new Models.Persona();
+                oPersona.Nombre = model.Nombre;
+                oPersona.Edad = model.Edad;
+                db.Personas.Add(oPersona);
+                //guardamos los cambios
+                db.SaveChanges();
+            }
             return Ok();
         }
 
