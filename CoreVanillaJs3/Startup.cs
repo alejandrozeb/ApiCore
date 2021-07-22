@@ -26,6 +26,13 @@ namespace CoreVanillaJs3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options => {
+                //añadimos cors
+                options.AddPolicy("permitir",
+                    builder => {
+                        builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +53,8 @@ namespace CoreVanillaJs3
             {
                 endpoints.MapControllers();
             });
+
+            app.UseCors("permitir");
         }
     }
 }

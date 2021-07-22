@@ -15,5 +15,23 @@ cadena para mappear la bd, tambien podemos usar User= Password= para usar sqlAut
  Models.CrudVanillaJsContext db= new Models.CrudVanillaJsContext()
  hace la conexion a bd
 
+-------consumir api-----
+los navegadores te iden tener cors en dependencias debemos instalar estos recursos
 
+
+ademas debemos configurar en startup en ConfigurationServices
+
+services.AddCors(options => {
+                //añadimos cors
+                options.AddPolicy("permitir",
+                    builder => {
+                        builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                    });
+            });
+
+de esta forma ya configuramos cors
+
+ [EnableCors("permitir")]
+
+debemos agregar al controlador 
  */
