@@ -61,6 +61,23 @@ namespace CoreVanillaJs3.Controllers
             return Ok();
         }
 
+        [HttpDelete]
+        public ActionResult Delete([FromBody] Models.Request.PersonaEditRequest model)
+        {
+
+            //conexion a la bd
+
+            using (Models.CrudVanillaJsContext db = new Models.CrudVanillaJsContext())
+            {
+                //creando un objeto
+                Models.Persona oPersona = db.Personas.Find(model.Id);
+                db.Personas.Remove(oPersona);
+                //guardamos los cambios
+                db.SaveChanges();
+            }
+            return Ok();
+        }
+
 
     }
 
