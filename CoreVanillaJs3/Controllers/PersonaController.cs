@@ -41,6 +41,26 @@ namespace CoreVanillaJs3.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        public ActionResult Put([FromBody] Models.Request.PersonaEditRequest model)
+        {
+
+            //conexion a la bd
+
+            using (Models.CrudVanillaJsContext db = new Models.CrudVanillaJsContext())
+            {
+                //creando un objeto
+                Models.Persona oPersona = db.Personas.Find(model.Id);
+                oPersona.Nombre = model.Nombre;
+                oPersona.Edad = model.Edad;
+                //inidicamos que se esta actualizando
+                db.Entry(oPersona).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                //guardamos los cambios
+                db.SaveChanges();
+            }
+            return Ok();
+        }
+
 
     }
 
